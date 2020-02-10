@@ -1,0 +1,216 @@
+.input {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	width: 100%;
+    vertical-align: top;
+    padding-top: 25px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    
+    &--clear {
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        border: none;
+        background-color: transparent;
+        outline: none;
+        fill: $white;
+        padding: 0;
+        cursor: pointer;
+
+        &:focus,
+        &:hover,
+        &:active {
+            outline: none;
+        }
+    }
+
+
+    input {
+        padding-right: 20px;
+        text-overflow: ellipsis;
+    }
+    
+    &:not(.modifier--select) {
+        overflow: hidden;
+    }
+    
+    &--field {
+        position: relative;
+        display: block;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        color: $white;
+        -webkit-appearance: none; /* for box shadows to show on iOS */
+        padding-top: 10px;
+        width: 100%;
+        font-size: 16px;
+        @include font-primary;
+
+        &:focus {
+            outline: none;
+        }
+
+        &.modifier--text-area {
+            height: 100px;
+            resize: none;
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active, 
+        &:-internal-autofill-selected,
+        &:-webkit-autofill:focus {
+            background-color: $primary-color !important;
+            color: $white !important;
+            // box-shadow: none !important;
+            box-shadow: 100px 100px 100px red !important;
+            -webkit-box-shadow: none !important;
+        }
+    }
+
+    &--label {
+        color: $white;
+        user-select: none;
+        position: absolute;
+        font-size: 15px;
+        letter-spacing: 2px;
+        left: 0;
+        bottom: 10px;
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0em;
+        pointer-events: none;
+        transition: letter-spacing 0.2s 0.15s, font-size 0.2s 0.15s, bottom 0.2s 0.15s, color 1s ease-out;
+        transform-origin: 0 0;
+        @include font-secondary;
+        text-transform: uppercase;
+    }
+
+    .graphic {
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        fill: none;
+        stroke: $white;
+        pointer-events: none;
+        transition: transform 0.7s, stroke 0.7s cubic-bezier(0, 0.25, 0.5, 1);
+    }
+
+    &.modifier--focused,
+    &.modifier--filled {
+        .input--label {
+            color: $primary-color;
+            bottom: 30px;
+            font-size: 20px;
+            letter-spacing: 0;
+        }
+
+        .graphic {
+            stroke: $primary-color;
+            @include transform(translate3d(-66.6%, 0, 0));
+        }
+    }
+
+    &.modifier--select {
+        z-index: 2;
+        
+        .v-select {
+            top: 2px;
+        }
+        
+        .graphic {
+            bottom: -1px
+        }
+
+        input {
+            color: $white;
+            padding: 0;
+            margin: 0;
+        }
+
+        .vs__selected {
+            padding: 0;
+            margin: 0;
+            border: none;
+            color: $white;
+            width: calc(100% - 10px);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 16px;
+            color: $white;
+            text-transform: capitalize;
+            @include font-primary;
+            &-options {
+                padding: 0;
+                margin: 0;
+                border: none;
+            }
+        }
+        
+        .vs--unsearchable .vs__search:hover {
+            cursor: text;   
+        }
+
+        .vs__dropdown {
+            &-toggle {
+                border: none;
+                padding-bottom: 0;
+                position: relative;
+
+                .vs__selected-options {
+                    overflow: hidden;
+                    padding-right: 20px;
+                }
+                
+
+                .vs__open-indicator {
+                    display: none;
+                }
+        
+                .vs__actions {
+                    padding: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    .vs__clear {
+                        fill: $white;
+                        margin: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            &-menu {
+                padding: 0;
+                border-radius: 0;
+                border: none;
+                overflow: visible;
+            }
+        }
+
+        ul {
+            margin-top: 0;
+            li {
+                padding-bottom: 0;
+                margin-bottom: 0;
+                margin-top: 0;
+                text-transform: capitalize;
+                white-space: initial;
+                
+                &::before {
+                    display: none;
+                }
+
+                padding: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,296 @@
+@mixin hardware($backface: true, $perspective: 1000) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+    perspective: $perspective;
+}
+
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+    $padding: unquote( ( $y / $x ) * 100 + '%' );
+    @if $pseudo {
+        &:before {
+            @include pseudo($pos: relative);
+            width: 100%;
+            padding-top: $padding;
+        }
+    } @else {
+        padding-top: $padding;
+    }
+}
+
+@mixin transform($transforms) {
+    -moz-transform: $transforms;
+    -o-transform: $transforms;
+    -ms-transform: $transforms;
+    -webkit-transform: $transforms;
+    transform: $transforms;
+}
+
+@mixin wall($width, $height, $beam-count: 10, $primary-color, $secondary-color: $primary-color, $is-fort: false) {
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    transform-style: preserve-3d;
+
+    &--inner {
+        animation: rotate 5s linear 5;
+        &.modifier--touch-wall--inner {
+            animation: rotate 2s linear forwards 1;
+        }
+        transform-style: preserve-3d;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    &--faces {
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: all 0.1s;
+        width: 100%;
+        box-sizing: border-box;
+        padding-bottom: 100%;
+        transform-origin: center;
+        @include transform(rotateX(90deg));
+
+        &::after,
+        &::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            box-sizing: border-box;
+            border-radius: 50%;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+            @include transform(translateZ(0));
+            background-color: $primary-color;
+        }
+    }
+
+    &--beams {
+        box-sizing: border-box;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transform-style: preserve-3d;
+        transition: all 0.4s;
+        border: 4px solid $primary-color;
+        background-color: transparent;
+        transition: all 0.5s;
+        transition-delay: 0.5s;
+        &-wrapper {
+            transform-style: preserve-3d;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    @if $is-fort {
+        &--beams {
+            @for $i from 1 through $beam-count {
+                &:nth-of-type(#{$i}) { 
+                    @include transform(rotateY(rod-angle($i, $beam-count, 5deg)) scaleX(1.1));
+                }
+            }
+        }
+    }
+
+    @else {
+        &--beams {
+            @for $i from 1 through $beam-count {
+                &:nth-of-type(#{$i}) { 
+                    @include transform(rotateY(rod-angle($i, $beam-count, 5deg)));
+                }
+            }
+        }
+    }
+
+    &.modifier--show-faces {
+        .wall--faces {
+            opacity: 1;
+            &::before {
+                @include transform(rotateY(-90deg) translateX(50%) rotateY(90deg));
+            }
+    
+            &::after {
+                @include transform(rotateY(-90deg) translateX(-50%) rotateY(90deg));
+            }
+        }
+    }
+
+    &.modifier--luminate {
+        .wall--faces::after,
+        .wall--faces::before,
+        .wall--beams {
+            box-shadow: 0 0 40px rgba($primary-color, 0.3);
+        }
+
+        .wall--beams {
+            background-color: $secondary-color;
+        }
+    }
+}
+
+@mixin boundary($width, $height, $beam-count: 10, $ring-color, $beam-color: $ring-color, $rod-count: 3, $border-width: 20px, $rod-height: 30px, $reverse-faces: false) {
+    @include wall($width, $height, $beam-count, $ring-color, $beam-color);
+    top: auto;
+    height: 0;
+    bottom: 120px;
+    @include transform(translateX(-50%));
+    transition: all 1s;
+
+    &--inner {
+        animation-duration: 2s;
+        animation-iteration-count: 2;
+    }
+
+    &--rods {
+        width: 100%;
+        background-color: transparent;
+        height: $rod-height;
+        @include transform(rotateX(45deg));
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-sizing: border-box;
+
+        &-wrapper {
+            transform-style: preserve-3d;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @for $i from 1 through $rod-count {
+            &:nth-of-type(#{$i}) { 
+                @include transform(rotateX(90deg) rotateZ(rod-angle($i, $rod-count)) translateZ(0));
+            }
+        }
+
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background-color: transparent;
+            transition: left 0.6s, background-color 0.2s;
+        }
+
+        &::after {
+            left: 100%;
+        }
+    }
+
+    &--faces {
+        @include transform(rotateX(90deg) scale(0));
+        transition: all 0.2s;
+
+        &::after,
+        &::before {
+            box-shadow: 0 0 60px 20px rgba($ring-color, 0.5);
+            background-color: transparent;
+            box-sizing: border-box;
+            @include transform(rotateY(-90deg) translateX(50%) rotateY(90deg));
+            transition: all 2s;
+        }
+
+        @if $reverse-faces {
+            &::after {
+                border: $border-width solid $ring-color;
+                border-right-color: transparent;
+            }
+    
+            &::before {
+                border: $border-width solid transparent;
+                border-right: $border-width solid $ring-color;
+            }
+
+        } @else {
+            &::before {
+                border: $border-width solid $ring-color;
+                border-left-color: transparent;
+            }
+    
+            &::after {
+                border: $border-width solid transparent;
+                border-left: $border-width solid $ring-color;
+            }
+        }
+
+        &.modifier--basement-face {
+            top: auto;
+            bottom: 0;
+            @include transform(rotateX(90deg) rotateZ(0) rotateY(-90deg) translateX(-50%) rotateY(90deg) scale(0));
+
+            &::after,
+            &::before {
+                @include transform(none);
+            }
+        }
+    }
+
+    &--beams {
+        border-color: $beam-color;
+        border-top: 0;
+        border-bottom: 0;
+    }
+
+    &.modifier--show {
+        .wall--faces {
+            @include transform(rotateX(90deg) scale(1));
+            &.modifier--basement-face {
+                @include transform(rotateX(90deg) rotateZ(0) rotateY(-90deg) translateX(-50%) rotateY(90deg) scale(1));
+            }
+        }
+    }
+
+    &.modifier--scaleout {
+        height: 220px;
+    }
+
+    &.modifier--show-rods {
+        .wall--rods {
+            &::before {
+                background-color: $ring-color;
+                left: -15px;
+            }
+
+            &::after {
+                background-color: $ring-color;
+                left: calc(100% - 5px);
+            }
+        }
+    }
+}
+
+@mixin material {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    
+    &:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+}
+
+@mixin material-hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+@mixin body-material-y {
+    box-shadow: 0 -1px 3px rgba(0,0,0,0.12), 0 -1px 2px rgba(0,0,0,0.24);
+    transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+    
+    &:hover {
+        box-shadow: 0 -14px 28px rgba(0,0,0,0.25), 0 -10px 10px rgba(0,0,0,0.22);
+    }
+}

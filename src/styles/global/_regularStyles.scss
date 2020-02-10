@@ -1,0 +1,158 @@
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    font-size: 2rem;
+    @include font-heading;
+    text-transform: capitalize;
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 0;
+    padding: 0;
+    margin: 60px 0;
+    color: $white;
+    
+    span {
+        position: relative;
+        display: inline-block;
+        &::after {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            background: linear-gradient(35deg, $primary-color, transparent, $primary-color, $primary-color, transparent);
+            background-size: 100%;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
+            z-index: -1;
+            background-size: 200%;
+            filter: blur(10px);
+        }
+    }
+
+    &.modifier--error {
+        span {
+            &::after {
+                background: linear-gradient(35deg, $hot-red, transparent, $hot-red, $primary-color, transparent);
+            }
+        }
+    }
+
+    &.modifier--success {
+        span {
+            &::after {
+                background: linear-gradient(35deg, $brand-color-green, transparent, $brand-color-green, $primary-color, transparent);
+            }
+        }
+    }
+}
+
+.brand-heading {
+    @include font-secondary;
+    font-size: 1.4rem;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    
+    &.modifier--left {
+        text-align: left;
+    }
+
+    &.modifier--page-section-heading {
+        margin-top: 20px;
+        line-height: 1.5;
+    
+        @include mq(tablet){
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.brand-subheading {
+    @include font-heading;
+    font-size: 2rem;
+    text-transform: capitalize;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.brand-main-heading {
+    @include font-secondary;
+    color: $white;
+    margin-bottom: 20px;
+    user-select: none;
+    font-size: 3rem;
+
+    @include mq(tablet){
+        font-size: 4em;
+    }
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+a {
+    @include font-secondary;
+    letter-spacing: 1px;
+    font-size: 14px;
+    transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+    text-decoration: none;
+    color: $primary-link-color;
+    text-transform: uppercase;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        color: $primary-color;
+        outline: none;
+    }
+}
+
+ul li {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    padding-top: 5px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 12px;
+        border-radius: 50%;
+        left: 20px;
+        width: 5px;
+        height: 5px;
+        background-color: $white;
+        box-shadow: 1px 1px 10px 5px $primary-color;
+    }
+}
+
+.container {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 0 15px;
+
+    @include mq(tablet){
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+        padding-bottom: 40px;
+    }
+}
+
+.max-container {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}

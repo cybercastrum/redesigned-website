@@ -1,0 +1,15 @@
+@mixin font-primary {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+@mixin font-secondary {
+    font-family: 'Ruda', sans-serif;
+}
+
+@mixin font-special {
+    font-family: 'Audiowide', sans-serif;
+}
+
+@mixin font-heading {
+    font-family: 'Amatic SC', cursive;
+}

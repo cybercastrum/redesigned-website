@@ -1,0 +1,96 @@
+$noOfLinks: 4;
+
+.nav {
+    text-align: center;
+    max-width: 80%;
+    margin: 0 auto;
+    
+    &.modifier--showing {
+        pointer-events: initial;
+    }
+
+    @include mq(tablet, max) {
+        margin-top: 40px;
+    }
+
+    &--link {
+        background-color: $body-color;
+        padding: 10px;
+        display: inline-block;
+        min-width: 90px;
+        border-radius: 5px;
+        @include material;
+
+        &--wrapper {
+            width: 25%;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 1em;
+            text-align: center;
+            max-width: 130px;
+            margin-bottom: 20px;
+
+            @include mq('tablet', 'max') {
+                width: 50%;
+            }
+
+            .nav--link {
+                &.show-navigation-enter-active {
+                    transition: all .3s ease;
+                }
+        
+                &.show-navigation-leave-active {
+                    transition: all .3s ease;
+                }
+        
+                &.show-navigation-enter, 
+                &.show-navigation-leave-to {
+                    @include transform(translateY(100px));
+                    opacity: 0;
+                }
+            }
+
+            @for $i from 1 through $noOfLinks {
+                &:nth-of-type(#{$i}) { 
+                    .nav--link.show-navigation-enter-active {
+                        transition-delay: calc(0.2s + #{$i}s/10);
+                    }
+                    .nav--link.show-navigation-leave-active {
+                        transition-delay: calc(0.2s + (#{$noOfLinks}s - #{$i}s)/10);
+                    }
+                }
+            }
+        }
+
+        &--icon {
+            display: block;
+            padding-bottom: 15px;
+            font-size: 4em;
+            transition: inherit;
+        }
+
+        &--text {
+            letter-spacing: 2px;
+            transition: inherit;
+        }
+    }
+
+    &--footer {
+        text-align: center;
+        &--link {
+            background-color: $body-color;
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            @include material;
+            font-size: 0.8rem;
+            line-height: 30px;
+
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
+        }
+    }
+}

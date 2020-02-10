@@ -1,0 +1,11 @@
+@function rod-angle($ind, $count, $excess: 0deg) {
+    @return ($ind*(180deg / $count)) + $excess;
+}
+
+@function half-value($value, $negative: false) {
+    @if ($negative) {
+        @return (-1 * ($value/2));
+    } @else {
+        @return $value/2;
+    }
+}

@@ -1,0 +1,129 @@
+.price-panel {
+    h3 {
+        color: $white;
+    }
+
+    ul {
+        padding-top: 20px;
+        li {
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding-top: 6px;
+            color: $white;
+            text-align: left;
+            font-size: 18px;
+            &::before {
+                box-shadow: none;
+            }
+
+            @include mq(tablet) {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .price-item {
+        &--common {
+            background-color: $white;
+            color: $black;
+            padding: 20px 0;
+
+            .container {
+                padding-bottom: 0;
+            }
+
+            h3 {
+                color: $black;
+            }
+
+            &--subheading {
+                text-align: center;
+            }
+
+            ul li {
+                color: $black;
+            }
+
+            @include mq(tablet){
+                ul {
+                    overflow: hidden;
+                    li {
+                        width: 50%;
+                        float: left;
+                        box-sizing: border-box;
+                        line-height: 1.5;
+                        &:nth-child(odd) {
+                            clear: both;
+                        }
+                    }
+                }
+            }
+
+            @include mq(above-tablet) {
+                padding: 30px 0;
+                ul {
+                    li {
+                        width: 33.33%;
+                        &:nth-child(odd) {
+                            clear: none;
+                        }
+
+                        &:nth-child(3n + 1) {
+                            clear: both;
+                        }
+                    }
+                }
+            }
+        }
+
+        &--category {
+            h3 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+            }
+
+            &:first-child {
+                background-color: #3ea299;
+            }
+
+            &:nth-child(2) {
+                background-color: #5578c5;
+            }
+
+            &:nth-child(3) {
+                background-color: #cc8f06;
+            }
+        }
+
+        &--cta {
+            display: block;
+            margin: 40px auto;
+        }
+
+        @include mq(tablet){
+            &--categories {
+                display: table;
+                width: 100%;
+                max-width: 1440px;
+                margin: 0 auto;
+            }
+
+            &--category {
+                display: table-cell;
+                position: relative;
+                padding-bottom: 100px;
+
+                h3 {
+                    margin-top: 40px;
+                }
+            }
+            
+            &--cta {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                @include transform(translateX(-50%));
+            }
+        }
+    }
+}

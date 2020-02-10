@@ -1,0 +1,61 @@
+@keyframes rotate {
+    to { 
+        @include transform(scale(1) rotateY(360deg));
+    }
+}
+
+@keyframes rotateToReverse {
+    to { 
+        @include transform(rotateY(180deg));
+    }
+}
+
+@keyframes rotateToNormal {
+    to { 
+        @include transform(rotateY(0deg));
+    }
+}
+
+@keyframes fadeToTop {
+    to {
+        @include transform(translateY(0)); 
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    to {opacity: 1;}
+}
+
+@keyframes rotateGradient {
+	0% {
+		background-position: 0 0;
+    }
+    
+	50% {
+		background-position: 200% 0;
+    }
+    
+	100% {
+		background-position: 0 0;
+	}
+}
+
+@keyframes slideFadeOut {
+    0% {
+        max-height: 150px;
+        opacity: 1;
+    }
+    
+    100% {
+        opacity: 0;
+        max-height: 0;
+    }
+}
+
+@keyframes slideFadeIn {
+    100% {
+        opacity: 1;
+        max-height: 150px;
+    }
+}

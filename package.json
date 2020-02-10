@@ -1,0 +1,59 @@
+{
+  "name": "cyber-castrum",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --dest docs",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^2.6.5",
+    "d3-ease": "^1.0.6",
+    "gsap": "^2.1.3",
+    "segment-js": "^1.1.2",
+    "tiny-slider": "^2.9.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vue-select": "^3.4.0",
+    "vue2-perfect-scrollbar": "^1.2.4"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-eslint": "^3.12.0",
+    "@vue/cli-service": "^3.12.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^6.0.1",
+    "node-sass": "^4.13.0",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
+    "style-resources-loader": "^1.3.3",
+    "vue-cli-plugin-style-resources-loader": "^0.1.3",
+    "vue-particles": "^1.0.9",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

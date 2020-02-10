@@ -1,0 +1,48 @@
+.mini-banner {
+    &--main {
+        height: 250px;
+        background-size: cover;
+        position: relative;
+    
+        #particles-container {
+            z-index: 3;
+        }
+    
+        &::after {
+            content: '';
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+            position: absolute;
+        }
+    }
+
+    &--heading {
+        position: absolute;
+        margin: 0;
+        left: 50%;
+        top: 50%;
+        display: inline-block;
+        @include transform(translate(-50%, -50%));
+        z-index: 3;
+    }
+
+    &--image-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        z-index: 1;
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+}

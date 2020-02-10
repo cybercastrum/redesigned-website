@@ -1,0 +1,58 @@
+.footer {
+    &-section {
+        &.modifier--contact {
+            background-color: $black;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px 0;
+
+            h4 {
+                margin-bottom: 1rem;
+            }
+
+            p {
+                margin-bottom: 1rem;
+            }
+            
+            .container {
+                padding-bottom: 0;
+            }
+
+            @include mq(tablet) {
+                text-align: left;
+                .footer-section--contact {
+                    &--statement {
+                        width: 70%;
+                        display: inline-block;
+                        vertical-align: middle;
+                        h4 {
+                            margin: 1rem 0;
+                            text-align: left;
+                        }
+                    }
+
+                    &--cta {
+                        width: 29%;
+                        display: inline-block;
+                        position: relative;
+                        vertical-align: middle;
+                        text-align: right;
+                    }
+                }
+            }
+        }
+
+        &.modifier--copyright {
+            text-align: center;
+            
+            .container {
+                padding: 20px 0;
+            }
+            
+            h4 {
+                line-height: 1.4;
+                margin: 0;
+            }
+        } 
+    }
+}

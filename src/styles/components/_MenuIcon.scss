@@ -1,0 +1,54 @@
+.menu--icon {
+    position: fixed;
+    top: -10px;
+    right: -15px;
+	display: inline-block;
+    width: 100px;
+    height: 100px;
+	pointer-events: none;
+    transition: 0.1s;
+
+    /* @include mq(tablet, max){
+        top: 0;
+    } */
+    
+    svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        @include transform(scale(0.1));
+        transform-origin: 0 0;
+
+        path {
+            stroke: $white;
+            stroke-width: 20px;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: transparent;
+
+            &#pathB {
+                stroke: $primary-color;
+            }
+        }
+    }
+
+    &--trigger {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        cursor: pointer;
+        pointer-events: auto;
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        &:hover,
+        &:focus {
+            outline: none;
+        }
+    }
+}

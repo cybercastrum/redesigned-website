@@ -1,0 +1,207 @@
+.logo-wrapper {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.modifier--make-small {
+        top: 40px;
+        left: 45px;
+        pointer-events: initial;
+        @include transform(translate(-50%, -50%) scale(0.15));
+
+        @include mq(tablet){
+            @include transform(translate(-50%, -50%) scale(0.167));
+        }
+
+        #logo {
+            .logo-text {
+                font-size: 82px;
+                line-height: 90px;
+                position: relative;
+                left: 200px;
+            }
+
+            &.modifier--make-c {
+                .center-wall--faces {
+                    padding-bottom: calc(100% - 30px);
+                    border-width: 15px;
+                }
+            }
+        }
+    }
+}
+
+#logo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include transform(rotateX(-45deg));
+    transform-style: preserve-3d;
+    transition: all 1s;
+
+    a {
+        text-decoration: none;
+        display: block;
+        transform-style: preserve-3d;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .logo-text {
+        opacity: 0;
+        @include transform(rotateX(90deg) translateZ(-90px));
+        text-align: center;
+        color: #fff;
+        max-width: 120px;
+        margin: 0 auto;
+        font-size: 21px;
+        line-height: 32px;
+        @include font-special;
+        text-rendering: optimizeSpeed;
+        transition: opacity 0.2s 0.8s, text-shadow 0.2s 1s, font-size 0.4s, left 0.4s, line-height 0.4s;
+        text-transform: uppercase;
+        user-select: none;
+    }
+    
+    &.modifier--turn-logo {
+        @include transform(rotateX(-90deg));
+    }
+
+    &.modifier--reveal-logo {
+        .wall {
+            &--faces {
+                &::after,
+                &::before {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    &.modifier--show-logo-text {
+        .logo-text {
+            opacity: 1;
+            text-shadow: -4px 4px 4px rgba($black, 1), 2px 1px 7px rgba($white, 1);
+        }
+    }
+
+    &.modifier--repeated-animation {
+        .center-wall,
+        .white-wall,
+        .grey-wall {
+            &--inner {
+                animation: none !important;
+            }
+        }
+
+        .logo-text, .wall--faces {
+            opacity: 0;
+            animation: fadeIn 0.2s ease-in 0.2s forwards;
+        }
+    }
+
+    &.modifier--make-c {
+        .center-wall {
+            &--inner {
+                animation: none;
+            }
+
+            &--faces {
+                &::after,
+                &::before {
+                    @include transform(rotateY(-90deg) translateX(50%) rotateY(90deg) scale(0));
+                    transform-origin: center;
+                }
+
+                padding-bottom: calc(100% - 10px);
+                border-width: 5px;
+                border-color: $primary-color;
+                border-right-color: transparent;
+            }
+        }
+
+        .white-wall {
+            &--rods:first-of-type {
+                &::after {
+                    background-color: transparent;
+                }
+            }
+
+            &--rods:nth-of-type(5),
+            &--rods:nth-of-type(6) {
+                &::before {
+                    background-color: transparent;
+                }
+            }
+
+            &--faces {
+                &.modifier--basement-face {
+                    display: none;
+                }
+
+                &::before {
+                    @include transform(rotateY(-90deg) translateX(50%) rotateY(90deg) rotateZ(90deg));
+                }
+            }
+        }
+
+        .grey-wall {
+            &--rods:last-of-type {
+                &::after {
+                    background-color: transparent;
+                }
+            }
+
+            &--faces {
+                &.modifier--basement-face {
+                    display: none;
+                }
+
+                &::after {
+                    @include transform(rotateY(-90deg) translateX(50%) rotateY(90deg) rotateZ(90deg));
+                }
+            }
+        }
+    }
+}
+
+.center-wall {
+    @include wall(37.5%, 37.5%, 10, $primary-color, $white, "true");
+    transform-origin: center;
+    @include transform(translate(-50%, -50%) scale(8));
+    transition: transform 1s;
+    
+    &--faces {
+        opacity: 0;
+        border: 0px solid transparent;
+        border-right-color: transparent;
+        border-radius: 50%;
+        transition: all 0.2s;
+
+        &::after, 
+        &::before {
+            transition: transform 0.5s, box-shadow 0.5s 0.2s;
+        }
+    }
+
+    &.modifier--scaleout {
+        @include transform(translate(-50%, -50%) scale(1));
+    }
+}
+
+
+.grey-wall {
+    @include boundary(50%, 50%, 18, $brand-color-grey, $white, 3, 20px, 15%);
+    &--inner {
+        animation-direction: reverse;
+    }
+}
+
+.white-wall {
+    @include boundary(70%, 70%, 30, $white, $brand-color-grey, 6, 20px, 15%, "true");
+}

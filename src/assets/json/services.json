@@ -1,0 +1,13 @@
+[{
+    "name": "consulting",
+    "linkPath": "consulting",
+    "image": "/img/consultation.jpg"
+}, {
+    "name": "testing",
+    "linkPath": "testing",
+    "image": "/img/person-pointing-numeric-print-1342460.jpg"
+}, {
+    "name": "training",
+    "linkPath": "training",
+    "image": "/img/training.jpg"
+}]

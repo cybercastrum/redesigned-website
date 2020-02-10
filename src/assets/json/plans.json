@@ -1,0 +1,52 @@
+{
+    "common": [{
+        "text": "OWASP Top 10 - Web Application"
+    }, {
+        "text": "OWASP Top 10 - Mobile"
+    }, {
+        "text": "Business logic vulnerability testing"
+    }, {
+        "text": "PDF report with screenshot"
+    }, {
+        "text": "Phone and Email support"
+    }, {
+        "text": "Vulnerability remediation information"
+    }, {
+        "text": "CyberCastrum Website Security Certification"
+    }, {
+        "text": "Custom test cases"
+    }],
+    "basic": [{
+        "text": "Shared Resource"
+    }, {
+        "text": "Quarterly Automated scan and report"
+    }, {
+        "text": "Annual Manual testing and report"
+    }],
+    "intermediate": [{
+        "text": "Shared Resource"
+    }, {
+        "text": "Manual Exploitation"
+    }, {
+        "text": "Monthly Automated scan and report"
+    }, {
+        "text": "Bi-Annaul Manual testing and report"
+    }, {
+        "text": "On-Demand Manual re-testing"
+    }, {
+        "text": "On-Demand Automated scanning"
+    }],
+    "advanced": [{
+        "text": "Dedicated Resource"
+    }, {
+        "text": "Manual Exploitation"
+    }, {
+        "text": "Monthly Automated scan and report"
+    }, {
+        "text": "Quarterly Manual testing and report"
+    }, {
+        "text": "On-Demand Manual re-testing"
+    }, {
+        "text": "On-Demand Automated scanning"
+    }]
+}

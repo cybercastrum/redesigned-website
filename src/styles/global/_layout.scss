@@ -1,0 +1,150 @@
+$menuHeight: 80px;
+
+#app {
+    overflow: hidden;
+    max-height: 100vh;
+    perspective: 1200px;
+
+    .banner, 
+    .mini-banner--inner {
+        padding-top: 80px;
+    }
+
+    &.modifier--is-touch-app {
+        overflow-y: auto;
+        overflow-x: hidden;
+        // perspective: none;
+
+        #logo-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        #main {
+            height: auto;
+            min-height: 100vh;
+        }
+
+        .mini-banner--inner {
+            padding-top: 0;
+        }
+
+        .mini-banner {
+            padding-top: 80px;
+        }
+    }
+
+    &.modifier--hide-menu {
+        #logo-wrapper,
+        .logo-wrapper,
+        #menu-wrapper {
+            top: -90px;
+        }
+
+        #logo-wrapper {
+            background-color: transparent;
+            opacity: 0;
+        }
+
+        .menu--icon {
+            top: -100px;
+        }
+    }
+}
+
+#logo-wrapper {
+    height: 100vh;
+    z-index: 2;
+    position: relative;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#menu-wrapper {
+    position: fixed;
+    top: calc(#{$menuHeight} + 10px);
+    width: 100%;
+    z-index: 2;
+}
+
+#nav-wrapper {
+    position: fixed;
+    left: 0;
+    width: 100%;
+}
+
+#main {
+    position: relative;
+    top: calc(-1 * #{$menuHeight});
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+    @include transform(translate3d(0, 0, 0));
+    opacity: 1;
+
+    &.modifier--fade-out {
+        opacity: 0;
+    }
+
+    &.modifier--mobile-router-view {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &.modifier--shrink {
+        @include transform(translate3d(0px, 65vh, -500px));
+        @include mq(above-tablet){
+            @include transform(translate3d(0px, 30vh, -500px));
+        }
+        
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: pointer;
+        @include body-material-y;
+        top: 0;
+
+        .mini-banner,
+        .mini-banner--inner {
+            padding-top: 0;
+        }
+    }
+}
+
+#app {
+    &.modifier--logo-animation-complete {
+        #logo-wrapper {
+            height: $menuHeight;
+            background-color: rgba($primary-color, 0.2);
+
+            .logo-wrapper {
+                &.modifier--make-small {
+                    a {
+                        /* &::after {
+                            content: '';
+                            width: 850px;
+                            height: 400px;
+                            display: block;
+                            background-color: $mild-dark-grey;
+                            position: absolute;
+                            left: 0;
+                            z-index: -1;
+                            border-radius: 60px;
+                            @include material;
+                            @include transform(rotateX(90deg));
+                
+                            @include mq(tablet, max) {
+                                width: 1000px;
+                                height: 500px;
+                                left: -50px;
+                                top: -50px;
+                            }
+                        } */
+                    }
+                }
+            }
+        }
+    }
+}

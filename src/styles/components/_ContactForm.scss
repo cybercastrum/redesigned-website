@@ -1,0 +1,37 @@
+.contact-form {
+    form {
+        overflow: hidden;
+        margin: 0 auto;
+        @include mq(tablet) {
+            max-width: 400px;
+        }
+    }
+
+    &--submit {
+        margin: 20px auto 0 auto;
+        display: block !important;
+    }
+
+    &--msg {
+        text-align: center;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.6s ease-in 0.2s;
+        &.modifier--show {
+            opacity: 1;
+            max-height: 150px;
+        }
+        
+        h2 {
+            margin-bottom: 15px;
+            margin-top: 0;
+            padding-top: 25px;
+        }
+
+        p {
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+}

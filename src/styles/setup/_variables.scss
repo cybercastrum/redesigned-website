@@ -1,0 +1,52 @@
+// general colors
+$black: #000;
+$white: #fff;
+$red: #ff0000;
+
+
+// theme colors
+$cool-blue: #2eb7e6;
+$spring-green: #98db9c;
+$pleasant-purple: #673ab7;
+$hot-red: #ff3434;
+$emperor: #555;
+$text-white: #cecece;
+
+// Greys
+$cape-cod: #383f3d;
+$emperor: #555;
+$body-grey: #1d1e21;
+$mild-dark-grey: #252929;
+
+// brand-colors
+$brand-color-green: $spring-green;
+$brand-color-grey: $cape-cod;
+$brand-color-second-grey: $emperor;
+$brand-color-white: $text-white;
+
+// component colors
+$body-color: $body-grey;
+$route-color: $black;
+
+// typography colors
+// $primary-color: #b430be;
+$primary-color: #269099;
+// $primary-color: #108aec;
+// $primary-color: $brand-color-green;
+$secondary-color: $cape-cod;
+$ternary-color: $brand-color-green;
+
+// link colors
+$primary-link-color: $brand-color-white;
+
+// dropdown colors
+$vs-selected-bg: $primary-color;
+$vs-state-active-bg: $primary-color;
+
+:export {
+    primaryColor: $primary-color;
+    secondaryColor: $secondary-color;
+    green: $brand-color-green;
+    hotRed: $hot-red;
+    primaryColorRgba: rgba($primary-color, 0.6);
+}

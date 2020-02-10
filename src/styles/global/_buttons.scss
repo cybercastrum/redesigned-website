@@ -1,0 +1,54 @@
+.fancy-brand-btn {
+    height: 40px;
+    display: inline-block;
+    width: 200px;
+    position: relative;
+    background-color: transparent;
+    border: 2px solid $brand-color-white;
+    color: $white;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 36px;
+    box-sizing: border-box;
+    transition: all 0.2s;
+    outline: none;
+
+    &:hover, 
+    &:focus,
+    &:active {
+        outline: none;
+    }
+
+    span {
+        position: relative;
+        z-index: 2;
+    }
+
+    &.modifier--hover-default,
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white !important;
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            background: linear-gradient(65deg, $primary-color, transparent, $primary-color);
+            background-size: 100%;
+            width: calc(100% + 8px);
+            height: calc(100% + 8px);
+            z-index: 1;
+            background-size: 200%;
+            animation: rotateGradient 5s linear infinite;
+        }
+    }
+    
+
+    &::after {
+        filter: blur(20px);
+    }
+}
